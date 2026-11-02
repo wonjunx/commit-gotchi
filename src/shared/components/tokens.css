@@ -1,0 +1,17 @@
+:root {
+  --cg-green: #3bff77;
+  --cg-card: #111713;
+  --cg-field: #171f1a;
+  --cg-line: #1f2a23;
+  --cg-text: #e8efe9;
+  --cg-sub: #9aa59d;
+  --cg-muted: #6f7b73;
+  --cg-red: #ff6b6b;
+}
+
+body {
+  background-color: var(--cg-card);
+  color: var(--cg-text);
+  margin: 0;
+  font-family: 'JetBrains Mono', 'Noto Sans KR', sans-serif;
+}
