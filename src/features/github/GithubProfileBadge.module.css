@@ -1,0 +1,8 @@
+.badge { display: inline-flex; align-items: center; gap: 10px; margin: 0; line-height: 1; }
+.avatar {
+  box-sizing: border-box; display: inline-grid; place-items: center;
+  width: 28px; height: 28px; margin: 0; border-radius: 4px; background: #16301f; object-fit: cover;
+}
+.placeholder { padding: 0; }
+.handle { font-family: var(--cg-mono, 'JetBrains Mono', Consolas, monospace); font-size: 13px; color: var(--cg-sub, #9aa59d); }
+.muted { color: var(--cg-muted, #6f7b73); }
