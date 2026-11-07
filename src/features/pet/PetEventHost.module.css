@@ -1,0 +1,39 @@
+/* 임시 스타일 (--cg-* 토큰 없을 때 기본값) */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgb(0 0 0 / 0.6);
+  z-index: 1000;
+}
+.box {
+  min-width: 320px;
+  padding: 28px;
+  border: 1px solid var(--cg-green, #3bff77);
+  border-radius: 8px;
+  background: var(--cg-card, #111713);
+  color: var(--cg-text, #e8eeea);
+  text-align: center;
+  font-family: Consolas, monospace;
+}
+.title {
+  margin: 0 0 8px;
+  color: var(--cg-green, #3bff77);
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+.big {
+  font-size: 22px;
+  font-weight: bold;
+}
+.ok {
+  margin-top: 12px;
+  padding: 10px 24px;
+  border: 1px solid var(--cg-green, #3bff77);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--cg-green, #3bff77);
+  font: bold 12px Consolas, monospace;
+  cursor: pointer;
+}
