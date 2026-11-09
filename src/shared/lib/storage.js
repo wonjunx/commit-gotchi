@@ -1,7 +1,7 @@
 /*To-do 데이터를 로컬 저장소에 저장/불러옴
 #저장키 파일. 관련 키가 필요할 경우 해당 스크립트에서 호출
 */
-const STORAGE_KEYS = {
+export const STORAGE_KEYS = {
     USER: "commitgotchi_user",
     PET: "commitgotchi_pet",
     TODOS: "commitgotchi_todos",

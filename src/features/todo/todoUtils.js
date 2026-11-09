@@ -21,7 +21,7 @@ export const createTodo = (title) => ({
     todoId: Date.now(),
     title: title.trim(), /* 앞뒤 공백 지우기 */
     completed: false,
-    date: getToday(),
+    date: todayKey(),
     rewarded: false,
 });
 
@@ -45,12 +45,28 @@ export const toggleTodo = (todos, todoId) =>
     );
 
     /*updateTodo*/
-    const updateTodo = (todos, todoId, newTitle) => {
+    export const updateTodo = (todos, todoId, newTitle) => {
         if (!newTitle || newTitle.trim()==="") return todos;
         return todos.map((todo) =>
         todo.todoId === todoId ? {...todo, title: newTitle.trim()} : todo);
     };
 
     /*countCompleted*/
-    const countCompleted = (todos) => 
+    export const countCompleted = (todos) => 
         todos.filter((todo) => todo.completed).length;
+
+    /* exp 연동 이후 추가 */
+
+    /*체크/해제 반복으로 exp 여러번 받는 행위 금지 */
+    export const markRewarded = (todos, todoId) =>
+        todos.map ((todo) =>
+            todo.todoId === todoId ? {...todo, rewarede: true} :todo);
+
+    /*오늘 날짜인 할일만 골라내기 */
+
+    export const getTodayTodos = (todos, today) =>
+        todos.filter ((todo)=> todo.date ===today);
+
+    /*전부 완료했는지 확인 */
+    export const isAllCompleted = (todos) =>
+        todos.length > 0 &&countCompleted(todos) ===todos.length;
