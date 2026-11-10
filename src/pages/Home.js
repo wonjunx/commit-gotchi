@@ -1,5 +1,6 @@
 import React from "react";
 import Placeholder from "../shared/components/Placeholder";
+import { TodoCard } from "../features/todo";
 
 function Home() {
   return (
@@ -13,7 +14,8 @@ function Home() {
         }}
       >
         <Placeholder name="DAY STREAK & Calendar" height="180px" />
-        <Placeholder name="TO-DO LIST" height="220px" />
+
+        <TodoCard />
       </div>
 
       <div style={{ flex: 1 }}>
