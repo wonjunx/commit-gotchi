@@ -1,6 +1,10 @@
 import React from 'react';
 
 function Header({ activeTab, setActiveTab }) {
+  // 🌟 브라우저 저장소에서 실제 연동된 유저 정보 가져오기
+  const user = JSON.parse(localStorage.getItem("commitgotchi_user") || "{}");
+  const displayId = user.githubId ? `@${user.githubId}` : "";
+
   const tabs = [
     { id: 'home', label: 'HOME' },
     { id: 'petbook', label: 'PET BOOK' },
@@ -10,47 +14,97 @@ function Header({ activeTab, setActiveTab }) {
 
   return (
     <header style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '15px 30px',
-      backgroundColor: '#171f1a',
-      borderBottom: '1px solid #1f2a23'
+      width: '100%',
+      borderBottom: '1px solid var(--cg-line)',
+      backgroundColor: 'var(--cg-bg)'
     }}>
-      <h2 style={{ color: '#3bff77', margin: 0, fontSize: '18px' }}>🌱 CommitGotchi</h2>
-      
-      <nav style={{ display: 'flex', gap: '15px' }}>
-        {tabs.map(tab => (
+      <div style={{
+        maxWidth: '1344px',
+        margin: '0 auto',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: '64px'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '48px' }}>
+          <h1 style={{ 
+            color: 'var(--cg-green)', 
+            margin: 0, 
+            fontSize: '19px', 
+            fontFamily: 'var(--cg-roboto)',
+            letterSpacing: '1px'
+          }}>
+            COMMITGOTCHI
+          </h1>
+          
+          <nav style={{ display: 'flex', gap: '12px', height: '64px', alignItems: 'flex-end' }}>
+            {tabs.map(tab => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  style={{
+                    background: isActive ? 'var(--cg-field)' : 'transparent',
+                    border: '1px solid',
+                    borderColor: isActive ? 'var(--cg-line)' : 'transparent',
+                    borderBottom: isActive ? '2px solid var(--cg-green)' : '1px solid transparent',
+                    color: isActive ? 'var(--cg-text-main)' : 'var(--cg-sub)',
+                    fontFamily: 'var(--cg-roboto)',
+                    fontWeight: 700,
+                    fontSize: '13px',
+                    width: '130px',
+                    height: '44px',
+                    borderRadius: '6px 6px 0 0',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease-in-out'
+                  }}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          {/* 🌟 하드코딩된 예시 대신, 실제 유저 아이디(displayId) 렌더링 */}
+          <span style={{ color: 'var(--cg-sub)', fontFamily: 'var(--cg-roboto)', fontSize: '13px' }}>
+            {displayId}
+          </span>
+          
           <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => setActiveTab('settings')}
             style={{
-              background: 'none',
-              border: 'none',
-              color: activeTab === tab.id ? '#3bff77' : '#9aa59d',
-              fontWeight: activeTab === tab.id ? 'bold' : 'normal',
+              background: 'var(--cg-field)',
+              border: `1px solid var(--cg-line)`,
+              color: 'var(--cg-sub)',
+              width: '40px',
+              height: '40px',
+              borderRadius: '6px',
               cursor: 'pointer',
-              fontSize: '14px'
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
           >
-            {tab.label}
+            ⚙️
           </button>
-        ))}
-      </nav>
-
-      <button
-        onClick={() => setActiveTab('settings')}
-        style={{
-          background: 'none',
-          border: '1px solid #1f2a23',
-          color: '#e8efe9',
-          padding: '6px 12px',
-          borderRadius: '4px',
-          cursor: 'pointer'
-        }}
-      >
-        ⚙️ 설정
-      </button>
+          <button style={{
+            background: 'var(--cg-line)',
+            border: 'none',
+            color: 'var(--cg-green)',
+            padding: '0 24px',
+            height: '40px',
+            borderRadius: '6px',
+            fontFamily: 'var(--cg-roboto)',
+            fontWeight: 700,
+            cursor: 'pointer'
+          }}>
+            SUBSCRIBE
+          </button>
+        </div>
+      </div>
     </header>
   );
 }

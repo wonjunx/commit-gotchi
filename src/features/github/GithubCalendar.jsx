@@ -15,7 +15,7 @@ export default function GithubCalendar({ githubId, getActivity }) {
   // 바깥 클릭 · Esc 로 팝오버 닫기
   useEffect(() => {
     if (!selected) return undefined;
-    const onDown = (e) => { if (!e.target.closest?.(`.${s.cell}, .${s.popover}`)) setSelected(null); };
+    const onDown = (e) => { if (!e.target.closest?.(`.${CSS.escape(s.cell)}, .${CSS.escape(s.popover)}`)) setSelected(null); };
     const onKey = (e) => { if (e.key === 'Escape') setSelected(null); };
     document.addEventListener('mousedown', onDown);
     document.addEventListener('keydown', onKey);
