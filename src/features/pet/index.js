@@ -15,7 +15,6 @@ export {
   nextEvolutionLevel,
   validateName,
 } from './exp.js'
-export { PET_KEY } from './keys.js'
 
 export { PetProvider } from './PetProvider.jsx'
 export { usePet } from './usePet.js'
