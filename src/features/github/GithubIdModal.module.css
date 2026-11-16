@@ -1,0 +1,44 @@
+.overlay {
+  --g: var(--cg-green, #3bff77); --r: var(--cg-red, #ff6b6b); --line: var(--cg-line, #1f2a23);
+  --mono: var(--cg-mono, 'JetBrains Mono', Consolas, monospace);
+  position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 16px;
+  background: rgb(0 0 0 / 0.6); animation: fade 0.15s ease-out;
+}
+.modal {
+  box-sizing: border-box; width: 400px; max-width: 100%; margin: 0; padding: 28px 24px 24px;
+  background: var(--cg-card, #111713); border: 1px solid #243028; border-radius: 6px; animation: rise 0.2s ease-out;
+}
+.modal *, .modal *::before, .modal *::after { box-sizing: border-box; }
+.title { margin: 0 0 20px; font-family: var(--mono); font-size: 18px; font-weight: 800; color: #e8efe9; text-align: left; }
+
+.field {
+  display: flex; align-items: center; height: 40px; padding: 0 12px;
+  background: var(--cg-field, #171f1a); border: 1px solid var(--g); border-radius: 3px;
+  box-shadow: 0 0 0 3px rgb(59 255 119 / 0.08);
+}
+.field:focus-within { box-shadow: 0 0 0 3px rgb(59 255 119 / 0.18); }
+.invalid, .invalid:focus-within { border: 2px solid var(--r); box-shadow: none; }
+.at { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #e8efe9; }
+.input {
+  flex: 1; min-width: 0; height: 100%; padding: 0 0 0 1px; background: transparent; border: 0; outline: none;
+  font-family: var(--mono); font-size: 13px; font-weight: 700; color: #e8efe9;
+}
+.error { margin: 10px 0 0; font-size: 12px; color: var(--r); text-align: left; }
+
+.btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+.cancel, .save {
+  display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 3px;
+  font-family: var(--mono); font-size: 12px; font-weight: 800; color: var(--g); cursor: pointer;
+}
+.cancel { background: #151d18; border: 1px solid var(--line); }
+.save { background: #16251c; border: 1px solid var(--g); }
+.cancel:hover:not(:disabled) { border-color: #3a5243; }
+.save:hover:not(:disabled) { background: #1b3022; }
+.cancel:disabled, .save:disabled { opacity: 0.45; cursor: default; }
+.spinner {
+  width: 12px; height: 12px; border: 2px solid rgb(59 255 119 / 0.3); border-top-color: var(--g);
+  border-radius: 50%; animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fade { from { opacity: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } }

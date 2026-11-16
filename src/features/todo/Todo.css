@@ -1,0 +1,259 @@
+/* =========================================================
+ * Todo.css
+ * 경로: src/features/todo/Todo.css
+ * 담당: 이윤경
+ *
+ * ※ 기존 todo.css에서 카드 관련 스타일만 가져옴
+ *   (.home, .preview, .placeholder 같은 테스트용 배치 CSS는 제외 -
+ *    위치는 정원준 HOME 레이아웃이 결정)
+ * ※ 색 변수는 임시. 정원준 C-01 tokens.css(--cg-* 변수)가 올라오면
+ *   아래 --bg-card 등을 --cg-card 등으로 교체 예정
+ * ========================================================= */
+
+:root {
+  --bg-card: #0f1512;
+  --bg-item: #151c18;
+  --bg-hover: #1b3d26;
+  --border: #26302a;
+  --green: #3dff6e;
+  --red: #ff5c5c;
+  --text-main: #e6ede8;
+  --text-sub: #6f7d74;
+  --track: #1a221d;
+  --font-mono: "JetBrains Mono", "D2Coding", Consolas, monospace;
+  --font-body: "Pretendard", "Noto Sans KR", sans-serif;
+  --radius: 4px;
+}
+
+.todo-card {
+  width: 100%;              /* 바깥 크기·위치는 HOME 레이아웃이 결정 */
+  height: 242px;
+  padding: 12px 24px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  color: var(--text-main);
+  box-sizing: border-box;
+}
+
+.todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.todo-heading {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.btn {
+  height: 44px;
+  padding: 0 14px;
+  background: var(--bg-item);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--green); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.add-btn { width: 96px; }
+
+.todo-list {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.todo-empty {
+  flex: 1;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-sub);
+  font-size: 13px;
+}
+
+.todo-item {
+  flex-shrink: 0;
+  height: 29px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-item);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.todo-item:hover { background: var(--bg-hover); }
+.todo-item:hover .todo-actions { opacity: 1; }
+
+.todo-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.todo-title {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.todo-item.checked .todo-title {
+  color: var(--text-sub);
+  text-decoration: line-through;
+}
+
+.todo-check input {
+  appearance: none;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  border: 1px solid var(--text-sub);
+  border-radius: 1px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.todo-check input:checked { background: var(--text-sub); }
+.todo-check input:checked::after {
+  content: "✓";
+  font-size: 10px;
+  line-height: 1;
+  color: var(--bg-card);
+}
+
+.todo-actions {
+  display: flex;
+  gap: 12px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.icon-btn {
+  padding: 0;
+  background: none;
+  border: none;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+}
+.icon-btn.edit { color: var(--green); }
+.icon-btn.delete { color: var(--red); font-size: 18px; }
+
+.todo-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.todo-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-sub);
+  letter-spacing: 0.5px;
+}
+
+.progress {
+  width: 420px;
+  height: 10px;
+  background: var(--track);
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--green);
+  transition: width 0.3s;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  width: 500px;
+  padding: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--green);
+  border-radius: 6px;
+}
+
+.modal-title {
+  margin: 0 0 28px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.modal-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  margin-bottom: 42px;
+  background: var(--bg-item);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  outline: none;
+  box-sizing: border-box;
+}
+.modal-input:focus { border-color: var(--green); }
+.modal-input::placeholder { color: var(--text-sub); }
+
+.modal-buttons {
+  display: flex;
+  gap: 16px;
+}
+.modal-buttons .btn { flex: 1; }
+
+
+/* ---------- EXP 토스트 (피그마 Todo EXP Toast) ---------- */
+.todo-toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);   /* 가로 가운데 정렬 */
+  padding: 10px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--green);
+  border-radius: 6px;
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 200;                  /* 모달(100)보다 위 */
+}

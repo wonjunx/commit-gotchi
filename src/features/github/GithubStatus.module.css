@@ -1,0 +1,16 @@
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.card {
+  box-sizing: border-box; min-height: 56px; padding: 12px 12px 10px; margin: 0;
+  background: var(--cg-panel, #111713); border: 1px solid var(--cg-line, #1f2a23); border-radius: 4px;
+}
+.label {
+  margin: 0 0 6px; font-family: var(--cg-mono, 'JetBrains Mono', Consolas, monospace);
+  font-size: 10px; font-weight: 400; letter-spacing: 0.04em; color: var(--cg-sub, #9aa59d);
+}
+.value {
+  margin: 0; font-family: var(--cg-mono, 'JetBrains Mono', Consolas, monospace);
+  font-size: 22px; font-weight: 800; line-height: 1; color: var(--cg-green, #3bff77);
+}
+/* 실패 중엔 마지막 기록을 살짝 흐리게 */
+.row[data-stale] .value { opacity: 0.7; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
