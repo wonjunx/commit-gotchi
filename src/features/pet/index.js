@@ -18,3 +18,6 @@ export {
 
 export { PetProvider } from './PetProvider.jsx'
 export { usePet } from './usePet.js'
+
+// 화면
+export { default as PetSprite } from './PetSprite.jsx'
