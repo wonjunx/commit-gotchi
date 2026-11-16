@@ -13,9 +13,11 @@ function App() {
 
   const [hasUser, setHasUser] = useState(false);
 
+  // GitHub 연결 + 펫 생성까지 끝나야 HOME
   useEffect(() => {
     const user = localStorage.getItem("commitgotchi_user");
-    if (user) {
+    const pet = localStorage.getItem("commitgotchi_pet");
+    if (user && pet) {
       setHasUser(true);
     }
   }, []);
