@@ -1,11 +1,8 @@
 import React from "react";
+import { PetBook as PetBookView } from "../features/pet";
 
 function Petbook() {
-  return (
-    <div style={{ color: "black", padding: "20px" }}>
-      <h2>Petbook</h2>
-    </div>
-  );
+  return <PetBookView />;
 }
 
 export default Petbook;
