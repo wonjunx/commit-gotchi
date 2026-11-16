@@ -1,0 +1,129 @@
+
+.ach {
+  width: 100%;
+  color: var(--cg-text);
+}
+
+.ach-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+.ach-title {
+  margin: 0 0 6px;
+  font-size: 28px;
+}
+.ach-sub {
+  margin: 0;
+  font-size: 13px;
+  color: var(--cg-sub);
+}
+.ach-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: var(--cg-green);
+}
+
+/* 3칸 x 3줄 카드 */
+.ach-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ach-card {
+  min-height: 140px;
+  padding: 20px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-line);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+.ach-card.done { border-color: var(--cg-green); }
+.ach-card.pending { opacity: 0.5; }
+
+.ach-card-title {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.ach-card-desc {
+  margin: 0;
+  font-size: 12px;
+  color: var(--cg-sub);
+}
+
+.ach-status {
+  margin: auto 0 0;          /* 카드 맨 아래로 */
+  padding-top: 16px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--cg-muted);
+}
+.ach-card.done .ach-status { color: var(--cg-green); }
+
+.ach-bar {
+  height: 6px;
+  margin-top: 8px;
+  background: var(--cg-field);
+}
+.ach-bar-fill {
+  height: 100%;
+  background: var(--cg-green);
+}
+
+/* D-day 줄 */
+.ach-dday {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-line);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.ach-dday-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--cg-green);
+}
+.ach-dday-list {
+  flex: 1;
+  margin: 0;
+  font-size: 13px;
+}
+.ach-dday-add {
+  height: 36px;
+  padding: 0 14px;
+  background: var(--cg-field);
+  border: 1px solid var(--cg-line);
+  border-radius: 4px;
+  color: var(--cg-green);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  cursor: pointer;
+}
+.ach-dday-add:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* 업적 달성 토스트 */
+.ach-toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-green);
+  border-radius: 6px;
+  color: var(--cg-green);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 200;
+}
