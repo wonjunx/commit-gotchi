@@ -22,3 +22,5 @@ export { usePet } from './usePet.js'
 // 화면
 export { default as PetSprite } from './PetSprite.jsx'
 export { default as PetOnboarding } from './onboarding/PetOnboarding.jsx'
+export { default as PetRenameModal } from './home/PetRenameModal.jsx'
+export { default as PetSettingsSection } from './home/PetSettingsSection.jsx'
