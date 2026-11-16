@@ -2,7 +2,9 @@
 // 새로 추가할 할일 + 수정할 할일 하나로 재사용 하기 위함
 
 import { useState, useEffect } from "react";
- 
+import Input from "../../shared/components/Input";
+import Button from "../../shared/components/Button";
+
 export default function TodoEditorModal({
   isOpen,
   title,
@@ -18,42 +20,55 @@ export default function TodoEditorModal({
     if (isOpen) setText(initialValue);
   }, [isOpen, initialValue]);
  
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKey = (e) => {
+      if (e.key === "Escape") onCancel();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [isOpen, onCancel]);
+
   if (!isOpen) return null;
  
   const isEmpty = text.trim() === "";
  
-  const handleConfirm = () => {
-    if (isEmpty) return;
+  const handleSubmit = (e) => {
+    e.preventDefault();          // 페이지 새로고침 막기
+    if (isEmpty) return;         // 빈 값이면 추가/수정 막기
     onConfirm(text);
   };
- 
-  const handleKeyDown = (e) => {
-    if (e.nativeEvent.isComposing) return; // 한글 조합 중 Enter 중복 방지
-    if (e.key === "Enter") handleConfirm();
-    if (e.key === "Escape") onCancel();
+
+  // CANCEL: form 제출(=ADD)로 처리되지 않게 막고 닫기
+  const handleCancelClick = (e) => {
+    e.preventDefault();
+    onCancel();
   };
- 
+
   return (
     <div className="modal-backdrop" onClick={onCancel}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
+      <form
+        className="modal"
+        onClick={(e) => e.stopPropagation()}
+        onSubmit={handleSubmit}
+      >
         <h2 className="modal-title">{title}</h2>
- 
-        <input
-          className="modal-input"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="할 일을 입력해주세요"
-          autoFocus
-        />
- 
-        <div className="modal-buttons">
-          <button className="btn" onClick={handleConfirm} disabled={isEmpty}>
-            {confirmLabel}
-          </button>
-          <button className="btn" onClick={onCancel}>CANCEL</button>
+
+        <div className="modal-field">
+          <Input
+            placeholder="할 일을 입력해주세요"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
         </div>
-      </div>
+
+        <div className="modal-buttons">
+          <Button variant="primary" disabled={isEmpty}>
+            {confirmLabel}
+          </Button>
+          <Button onClick={handleCancelClick}>CANCEL</Button>
+        </div>
+      </form>
     </div>
   );
 }

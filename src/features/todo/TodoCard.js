@@ -20,7 +20,9 @@ import TodoItem from "./TodoItem";
 import TodoEditorModal from "./TodoEditorModal";
 import ProgressBar from "./ProgressBar";
 import TodoToast from "./TodoToast";
+import Button from "../../shared/components/Button";
 import "./Todo.css";
+import "../../shared/components/tokens.css";  //배경 투명한 거 막기
 
 export default function TodoCard(){
     /* 처음 렌더링 할 때 local storage에서 불러오기 */
@@ -113,7 +115,9 @@ const handleToggle = (todoId) => {
     <section className="todo-card">
       <header className="todo-header">
         <h3 className="todo-heading">TODAY'S TO-DO</h3>
-        <button className="btn add-btn" onClick={openAddModal}>+ ADD</button>
+        <div className="add-btn">
+          <Button onClick={openAddModal}>+ ADD</Button>
+        </div>
       </header>
  
       {todos.length === 0 ? (
