@@ -1,11 +1,13 @@
 //업적달성화면
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { loadData, saveData, STORAGE_KEYS } from "../../shared/lib/storage";
 import { todayKey } from "../../shared/lib/date";
 import { usePet } from "../pet";
 import { checkAchievements, ddayLabel } from "./achievementRules";
+import DdaySection from "./DdaySection";
+import { addDday, updateDday, deleteDday } from "./ddayUtils";
+import DdayModal from "./DdayModal";
 import "./Achievement.css";
-
 
 const GITHUB_LEDGER_KEY = "commitgotchi_github_ledger";
 const TOAST_MS = 2000;
@@ -31,7 +33,6 @@ export default function AchievementsView() {
   // 화면을 열 때 한 번 판정 (useState 초기값 함수 → 첫 렌더링에만 실행)
   const [results] = useState(() => collectResults(pet));
   const [toast, setToast] = useState("");
-  const ddays = loadData(STORAGE_KEYS.DDAY, []);
 
   const doneCount = results.filter((r) => r.done).length;
 
@@ -49,7 +50,7 @@ export default function AchievementsView() {
     setToast(`업적 달성! ${newly.map((r) => r.title).join(" · ")}`);
   }, [results, today]);
 
-  // 토스트 자동으로 사라지기 
+  // 토스트 자동으로 사라지기 (강의 7장 useEffect + cleanup)
   useEffect(() => {
     if (!toast) return;
     const timer = setTimeout(() => setToast(""), TOAST_MS);
@@ -98,19 +99,9 @@ export default function AchievementsView() {
         ))}
       </ul>
 
-      {/* D-day 줄 (추가 모달은 A-02에서 연결) */}
-      <div className="ach-dday">
-        <span className="ach-dday-label">D-DAY</span>
-        <p className="ach-dday-list">
-          {ddays.length === 0
-            ? "등록된 일정이 없어요."
-            : ddays
-                .map((d) => `${d.title} ${ddayLabel(d.date, today)}`)
-                .join(" · ")}
-        </p>
-        <button className="ach-dday-add" disabled title="A-02에서 연결 예정">
-          + D-DAY
-        </button>
+      {/* D-day 줄 (HOME에도 같은 컴포넌트) */}
+      <div className="ach-dday-wrap">
+        <DdaySection />
       </div>
 
       {toast && <div className="ach-toast">{toast}</div>}

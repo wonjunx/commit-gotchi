@@ -77,39 +77,65 @@
   background: var(--cg-green);
 }
 
-/* D-day 줄 */
-.ach-dday {
-  margin-top: 24px;
-  padding: 16px 20px;
+/* ---------- D-day 카드 (DdaySection) · 위치·여백은 놓이는 곳에서 정함 ---------- */
+.ach-dday-wrap { margin-top: 24px; }
+
+.dday-card {
+  width: 100%;
+  padding: 12px 24px 18px;
   background: var(--cg-card);
   border: 1px solid var(--cg-line);
   border-radius: 6px;
+  box-sizing: border-box;
+  color: var(--cg-text);
+}
+
+/* 위: 제목 + 버튼 (TodoCard 헤더와 같은 배치) */
+.dday-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  margin-bottom: 10px;
 }
-.ach-dday-label {
+.dday-heading {
+  margin: 0;
   font-family: "JetBrains Mono", monospace;
-  font-size: 12px;
-  color: var(--cg-green);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
-.ach-dday-list {
-  flex: 1;
+/* 공통 Button 크기 (TodoCard + ADD와 같게) */
+.dday-add button {
+  width: 96px;
+  height: 44px;
+}
+
+/* 아래: 목록 */
+.dday-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dday-empty {
   margin: 0;
   font-size: 13px;
+  color: var(--cg-sub);
 }
-.ach-dday-add {
-  height: 36px;
-  padding: 0 14px;
+.dday-chip {
+  padding: 8px 12px;
   background: var(--cg-field);
   border: 1px solid var(--cg-line);
   border-radius: 4px;
-  color: var(--cg-green);
-  font-family: "JetBrains Mono", monospace;
-  font-size: 12px;
+  color: var(--cg-text);
+  font-size: 13px;
   cursor: pointer;
 }
-.ach-dday-add:disabled { opacity: 0.4; cursor: not-allowed; }
+.dday-chip:hover { border-color: var(--cg-green); }
+.dday-chip strong {
+  margin-left: 6px;
+  color: var(--cg-green);
+  font-family: "JetBrains Mono", monospace;
+}
 
 /* 업적 달성 토스트 */
 .ach-toast {
@@ -126,4 +152,70 @@
   font-size: 13px;
   font-weight: 700;
   z-index: 200;
+}
+
+
+/* ---------- D-day 모달 (A-02) · TODO: 공통 Modal 나오면 교체 ---------- */
+.ach-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.ach-modal {
+  width: 460px;
+  padding: 28px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-green);
+  border-radius: 6px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.ach-modal-title {
+  margin: 0 0 20px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  color: var(--cg-text);
+}
+
+.ach-field-label {
+  margin: 12px 0 6px;
+  font-size: 12px;
+  color: var(--cg-sub);
+}
+
+/* 날짜 입력: 공통 Input과 같은 모양으로 맞춤 */
+.ach-date {
+  padding: 12px;
+  background: var(--cg-field);
+  border: 1px solid var(--cg-line);
+  border-radius: 4px;
+  color: var(--cg-text);
+  font-size: 14px;
+  outline: none;
+  color-scheme: dark;        /* 달력 아이콘·팝업을 어두운 테마로 */
+}
+.ach-date:focus { border-color: var(--cg-green); }
+
+.ach-preview {
+  margin: 10px 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: var(--cg-green);
+}
+
+.ach-modal-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.ach-modal-buttons button {
+  flex: 1;
+  height: 44px;
 }
