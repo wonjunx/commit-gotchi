@@ -8,8 +8,8 @@ import {
   feedPet,
   validateName,
 } from './exp.js'
-import { PET_KEY } from './keys.js'
-import { loadData, saveData, todayKey } from './petDeps.js'
+import { loadData, saveData, STORAGE_KEYS } from '../../shared/lib/storage'
+import { todayKey } from '../../shared/lib/date'
 import { PetContext } from './petContext.js'
 import { PetEventHost } from './PetEventHost.jsx'
 
@@ -19,10 +19,12 @@ const ACTIVITY_REASONS = ['github', 'todo', 'allTodoBonus']
 const FIRST_MODAL_DELAY_MS = 700
 const NEXT_MODAL_DELAY_MS = 250
 
+const PET_KEY = STORAGE_KEYS.PET
 const later = (a, b) => (!a ? b : !b ? a : a > b ? a : b)
 
-// lastActivityDate: 마지막 활동일 'YYYY-MM-DD'. 로딩 중 undefined(패널티 보류), 기록 없음 null
-export function PetProvider({ lastActivityDate, children }) {
+// lastActivityDate(선택): 마지막 활동일 'YYYY-MM-DD'. 안 넘기면 펫이 활동 EXP를 받은 날로 판단
+// activityLoading: 활동 데이터를 불러오는 중이면 true (그동안 방치 패널티 보류)
+export function PetProvider({ lastActivityDate, activityLoading = false, children }) {
   const [pet, setPet] = useState(() => loadData(PET_KEY, null))
   const petRef = useRef(pet)
   const [today, setToday] = useState(todayKey)
@@ -48,16 +50,16 @@ export function PetProvider({ lastActivityDate, children }) {
     }
   }, [syncToday])
 
-  // EXP 받은 날도 활동일로 침
-  const effectiveLast = lastActivityDate === undefined ? undefined : later(lastActivityDate, pet?.lastExpDate)
+  // 넘겨받은 활동일과 EXP 받은 날 중 늦은 날
+  const effectiveLast = later(lastActivityDate ?? null, pet?.lastExpDate ?? null)
 
   // 방치 패널티 (활동 데이터 확정 후)
   useEffect(() => {
     const cur = petRef.current
-    if (!cur || effectiveLast === undefined) return
+    if (!cur || activityLoading) return
     const r = applyNeglectPenalty(cur, { lastActivityDate: effectiveLast, today })
     if (r.pet !== cur) commit(r.pet)
-  }, [today, effectiveLast, commit])
+  }, [today, effectiveLast, activityLoading, commit])
 
   // 대기열에서 모달 하나씩 표시
   useEffect(() => {
@@ -149,11 +151,7 @@ export function PetProvider({ lastActivityDate, children }) {
       rename,
       today,
       mood: pet
-        ? calculateMood({
-            lastActivityDate: effectiveLast === undefined ? (pet.lastExpDate ?? null) : effectiveLast,
-            today,
-            hp: pet.hp,
-          })
+        ? calculateMood({ lastActivityDate: effectiveLast, today, hp: pet.hp })
         : null,
       canFeedToday: pet ? canFeed(pet, today) : false,
       event,

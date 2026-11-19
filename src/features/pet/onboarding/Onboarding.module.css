@@ -1,0 +1,120 @@
+/* 온보딩 카드 — 주성님 GithubConnect 카드와 같은 톤 */
+.card {
+  --_bg: var(--cg-panel, #111713);
+  --_field: var(--cg-field, #171f1a);
+  --_line: var(--cg-line, #2a372e);
+  --_green: var(--cg-green, #39ff72);
+  --_text: var(--cg-text-main, #edf5ef);
+  --_sub: var(--cg-sub, #84938a);
+  --_muted: var(--cg-muted, #6f7b73);
+  --_red: var(--cg-red, #ff6b6b);
+  --_mono: var(--cg-mono, 'JetBrains Mono', Consolas, monospace);
+
+  box-sizing: border-box;
+  width: 640px;
+  max-width: calc(100vw - 32px);
+  padding: 32px 56px 44px;
+  display: flex;
+  flex-direction: column;
+  background: var(--_bg);
+  border: 1px solid var(--_line);
+  border-radius: 6px;
+  color: var(--_text);
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align: left;
+  line-height: 1.5;
+}
+.card *, .card *::before, .card *::after { box-sizing: border-box; }
+.wide { width: 760px; }
+
+.step { margin: 0; text-align: center; font-family: var(--_mono); font-size: 12px; color: var(--_green); letter-spacing: 0.5px; }
+.dots { display: flex; justify-content: center; gap: 6px; margin: 10px 0 28px; }
+.dot { width: 22px; height: 3px; background: var(--_line); }
+.dotOn { background: var(--_green); }
+
+.title { margin: 0; font-size: 22px; font-weight: 700; line-height: 1.35; }
+.desc { margin: 10px 0 24px; font-size: 13px; color: var(--_sub); }
+.hero { display: flex; justify-content: center; margin: 4px 0 24px; min-height: 96px; align-items: flex-end; }
+
+/* O-02 알 카드 */
+.eggs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-bottom: 28px; }
+.egg {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 18px 8px 14px; min-width: 0;
+  background: var(--_field); border: 1px solid var(--_line); border-radius: 6px;
+  color: var(--_text); font: inherit; cursor: pointer; text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+.egg:hover { border-color: #4a6b55; background: #1b2620; }
+.egg:focus-visible { outline: 2px solid var(--_green); outline-offset: 2px; }
+.eggOn, .eggOn:hover { border: 2px solid var(--_green); padding: 17px 7px 13px; background: #142019; }
+.eggArt { height: 64px; display: flex; align-items: flex-end; }
+.eggType { font-family: var(--_mono); font-size: 12px; font-weight: 800; letter-spacing: 0.4px; }
+.eggDesc { font-size: 11px; color: var(--_sub); line-height: 1.45; min-height: 32px; }
+.pill {
+  margin-top: 2px; padding: 3px 12px; border: 1px solid var(--_line); border-radius: 999px;
+  font-family: var(--_mono); font-size: 10px; font-weight: 700; color: var(--_muted);
+}
+.pillOn { border-color: var(--_green); color: var(--_green); }
+.eggOn .eggArt { animation: hop 0.6s steps(2) infinite; }
+@keyframes hop { 50% { transform: translateY(-4px); } }
+
+/* O-03 이름 */
+.label { display: block; margin: 0 0 10px; font-size: 12px; color: var(--_sub); font-family: var(--_mono); }
+.field { position: relative; }
+.input {
+  display: block; width: 100%; height: 44px; padding: 0 64px 0 14px;
+  background: var(--_field); color: var(--_text); border: 1px solid var(--_line); border-radius: 4px;
+  font-family: var(--_mono); font-size: 14px; font-weight: 700; outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input:focus { border-color: var(--_green); box-shadow: 0 0 0 3px rgba(57, 255, 114, 0.12); }
+.invalid, .invalid:focus { border: 2px solid var(--_red); box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.12); }
+.count { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-family: var(--_mono); font-size: 12px; color: var(--_muted); }
+.help { margin: 8px 0 0; font-size: 12px; color: var(--_muted); min-height: 18px; }
+.error { color: var(--_red); }
+.wobble { animation: wobble 0.9s steps(2) infinite; transform-origin: 50% 100%; }
+@keyframes wobble { 0% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+
+/* 버튼 줄 */
+.actions { display: grid; grid-template-columns: 120px 1fr; gap: 10px; margin-top: 28px; }
+.btn {
+  height: 44px; padding: 0 14px; background: var(--_field); color: var(--_text);
+  border: 1px solid var(--_line); border-radius: 4px;
+  font-family: var(--_mono); font-size: 12px; font-weight: 800; letter-spacing: 0.3px;
+  cursor: pointer; text-align: left; transition: border-color 0.15s, background 0.15s;
+}
+.btn:hover:not(:disabled) { border-color: #4a6b55; }
+.btn:focus-visible { outline: 2px solid var(--_green); outline-offset: 2px; }
+.primary { color: var(--_green); border-color: var(--_green); }
+.primary:hover:not(:disabled) { background: #1b2620; }
+.btn:disabled { cursor: not-allowed; color: #2f6e45; border-color: var(--_line); }
+.full { grid-column: 1 / -1; text-align: center; }
+
+/* O-05 부화 */
+.stage { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: 18px; height: 120px; margin: 4px 0 20px; }
+.arrow { font-family: var(--_mono); color: var(--_green); font-weight: 800; margin-bottom: 30px; }
+.shake { animation: shake 0.25s steps(2) infinite; transform-origin: 50% 100%; }
+@keyframes shake { 0% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+.crack { animation: crack 0.5s steps(3) forwards; }
+@keyframes crack { to { transform: scale(1.25); opacity: 0; filter: brightness(2); } }
+.pop { animation: pop 0.5s steps(3); }
+@keyframes pop { from { transform: scale(0.3); opacity: 0; } }
+.flash { position: absolute; inset: -20px 30%; background: radial-gradient(circle, rgba(57,255,114,0.35), transparent 70%); animation: flash 0.6s ease-out forwards; pointer-events: none; }
+@keyframes flash { from { opacity: 1; } to { opacity: 0; } }
+.center { text-align: center; }
+.rules { margin: 0; padding: 14px 16px; border: 1px solid var(--_line); border-radius: 4px; background: var(--_field); list-style: none; }
+.rules li { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; font-size: 12px; }
+.gain { font-family: var(--_mono); font-weight: 800; color: var(--_green); white-space: nowrap; }
+.loss { font-family: var(--_mono); font-weight: 800; color: var(--_red); white-space: nowrap; }
+.evo { margin: 10px 0 0; font-family: var(--_mono); font-size: 11px; color: var(--_muted); text-align: center; }
+.fadeIn { animation: fadeIn 0.4s ease-out both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } }
+
+@media (max-width: 720px) {
+  .card { padding: 28px 20px 32px; }
+  .eggs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card * { animation: none !important; }
+}

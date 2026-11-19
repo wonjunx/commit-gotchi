@@ -1,0 +1,33 @@
+/* 픽셀 느낌을 살리려고 움직임은 전부 steps() */
+.wrap { position: relative; display: inline-block; line-height: 0; flex: none; }
+.body { display: block; }
+.fx { position: absolute; pointer-events: none; line-height: 1; }
+
+/* HAPPY — 통통 튐 0.6s */
+.happy.animate .body { animation: bounce 0.6s steps(2) infinite; }
+@keyframes bounce { 50% { transform: translateY(-8%); } }
+.spark1 { left: -18%; top: 10%; animation: twinkle 1.2s steps(2) infinite; }
+.spark2 { right: -16%; top: -4%; animation: twinkle 1.2s steps(2) 0.4s infinite; }
+.spark3 { right: -6%; bottom: 0; transform: scale(0.6); animation: twinkle 1.2s steps(2) 0.8s infinite; }
+@keyframes twinkle { 50% { opacity: 0; } }
+
+/* NORMAL — 좌우로 천천히 흔들림 1.6s */
+.normal.animate .body { animation: sway 1.6s steps(2) infinite; }
+@keyframes sway { 0% { transform: translateX(-4%); } 50% { transform: translateX(4%); } }
+
+/* HUNGRY — 노랗게, 느리게 꿈틀 */
+.hungry .body { filter: sepia(0.55) saturate(1.6) hue-rotate(-25deg) brightness(1.05); }
+.hungry.animate .body { animation: slump 2s steps(2) infinite; }
+@keyframes slump { 50% { transform: translateY(4%) scaleY(0.96); } }
+.bang { right: -12%; top: 0; color: #ffd23b; font-family: var(--cg-mono, monospace); font-weight: 800; animation: twinkle 1s steps(2) infinite; }
+
+/* SICK — 색 빠짐 + 땀 */
+.sick .body { filter: grayscale(0.55) brightness(0.7); }
+.sick.animate .body { animation: shiver 2.4s steps(2) infinite; }
+@keyframes shiver { 0%, 90% { transform: translateX(0); } 95% { transform: translateX(3%); } }
+.drop { right: -6%; top: 8%; animation: drip 1.6s steps(3) infinite; }
+@keyframes drip { 0% { transform: translateY(0); } 100% { transform: translateY(40%); opacity: 0.4; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap *, .wrap { animation: none !important; }
+}
