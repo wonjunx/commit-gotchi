@@ -103,6 +103,10 @@
   text-overflow: ellipsis;
 }
 
+.todo-item.checked .todo-check,
+.todo-item.checked:hover { background: var(--cg-field); }
+.todo-item.checked .todo-check input { cursor: default; }
+
 .todo-item.checked .todo-title {
   color: var(--cg-muted);
   text-decoration: line-through;

@@ -60,7 +60,7 @@ export const toggleTodo = (todos, todoId) =>
     /*체크/해제 반복으로 exp 여러번 받는 행위 금지 */
     export const markRewarded = (todos, todoId) =>
         todos.map ((todo) =>
-            todo.todoId === todoId ? {...todo, rewarede: true} :todo);
+            todo.todoId === todoId ? {...todo, rewarded: true} :todo);
 
     /*오늘 날짜인 할일만 골라내기 */
 

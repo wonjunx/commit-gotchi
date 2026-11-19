@@ -53,7 +53,7 @@ const completedCount = countCompleted(todos);
 /* 체크 처ㄹ.ㅣ */
 const handleToggle = (todoId) => {
     const target = todos.filter((todo) => todo.todoId === todoId)[0];
-    if (!target) return;
+    if (!target || target.completed) return;
  
     const willComplete = !target.completed;   // 이번 클릭으로 "완료"가 되는지
     let next = toggleTodo(todos, todoId);
@@ -91,12 +91,19 @@ const handleToggle = (todoId) => {
     setTodos(next);
   };
  
-  // 삭제, 일단은 완료한 할 일을 지워도 EXP는 회수하지 않음
-  const handleDelete = (todoId) => setTodos((prev) => deleteTodo(prev, todoId));
- 
+  // 삭제, 지우면 아예 수정 못하게
+const handleDelete = (todoId) => {
+    const target = todos.filter((todo) => todo.todoId === todoId)[0];
+    if (!target || target.completed) return;
+    setTodos((prev) => deleteTodo(prev, todoId));
+  };
+
   const openAddModal = () => setModal({ mode: "add", target: null });
-  const openEditModal = (todo) => setModal({ mode: "edit", target: todo });
-  const closeModal = () => setModal({ mode: "closed", target: null });
+// 수정: 완료한 할 일은 수정 불가
+  const openEditModal = (todo) => {
+    if (todo.completed) return;
+    setModal({ mode: "edit", target: todo });
+  };  const closeModal = () => setModal({ mode: "closed", target: null });
  
   const handleConfirm = (text) => {
     if (modal.mode === "add") {
