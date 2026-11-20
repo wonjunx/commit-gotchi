@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { GithubAccountSection } from "../features/github";
+import { DataResetSection } from "../features/todo";
+import { PetSettingsSection } from "../features/pet";
 
 function Settings() {
   const [user, setUser] = useState(() => {
@@ -27,7 +29,10 @@ function Settings() {
 
       <GithubAccountSection user={user} onUserChange={handleUserChange} />
 
+      <PetSettingsSection />
+
       {/* 나중에 다른 설정이 생기면 이 아래로 추가하시면 됩니다 */}
+          <DataResetSection />
     </div>
   );
 }

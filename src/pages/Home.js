@@ -1,9 +1,8 @@
 import React from "react";
-import Placeholder from "../shared/components/Placeholder";
 import { TodoCard } from "../features/todo";
 import { GithubCalendar, GithubStatus } from "../features/github";
 import { getActivity, recordActivity } from "../features/todo/activity";
-import { usePet } from "../features/pet";
+import { usePet, PetCard } from "../features/pet";
 
 function Home() {
   const user = JSON.parse(localStorage.getItem("commitgotchi_user") || "{}");
@@ -44,8 +43,7 @@ function Home() {
           gap: "24px",
         }}
       >
-        {/* 펫 박스 임시 높이도 피그마 수치인 630px로 조정 */}
-        <Placeholder name="PET BOX" height="630px" />
+        <PetCard />
 
         <GithubStatus
           key={`stat-${githubId}`}

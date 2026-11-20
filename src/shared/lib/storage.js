@@ -32,6 +32,16 @@ export const loadData = (key,defaultValue)=> {
 };
 
 /* 데이터 초기화 모듈 */
+//S-04 데이터 초기화: 이름이 "commitgotchi_"로 시작하는 키 전부 삭제
+//지운 키 개수 반환
 export const removeData = (key) => {
     localStorage.removeItem(key);
+};
+
+export const clearAllData = () => {
+  const keys = Object.keys(localStorage).filter((key) =>
+    key.startsWith("commitgotchi_")
+  );
+  keys.forEach((key) => removeData(key));
+  return keys.length;
 };

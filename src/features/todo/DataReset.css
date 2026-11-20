@@ -1,0 +1,79 @@
+
+
+/* ---------- 설정 화면 "데이터" 섹션 ---------- */
+.reset-section {
+  width: 100%;
+  padding: 20px 24px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-line);
+  border-radius: 6px;
+  color: var(--cg-text);
+  box-sizing: border-box;
+}
+
+.reset-heading {
+  margin: 0 0 16px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.reset-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reset-label { margin: 0 0 4px; font-size: 14px; }
+.reset-sub { margin: 0; font-size: 12px; color: var(--cg-sub); }
+
+/* ---------- 확인 모달 ---------- */
+.reset-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.reset-modal {
+  width: 460px;
+  padding: 28px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-red);   /* 위험한 동작이라 빨간 테두리 */
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.reset-title {
+  margin: 0 0 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  color: var(--cg-red);
+}
+
+.reset-desc {
+  margin: 0 0 24px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cg-sub);
+}
+
+.reset-guide {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--cg-sub);
+}
+.reset-guide strong { color: var(--cg-red); }
+
+.reset-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.reset-buttons button {
+  flex: 1;
+  height: 44px;
+}

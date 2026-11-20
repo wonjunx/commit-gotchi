@@ -1,0 +1,221 @@
+
+.ach {
+  width: 100%;
+  color: var(--cg-text);
+}
+
+.ach-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+.ach-title {
+  margin: 0 0 6px;
+  font-size: 28px;
+}
+.ach-sub {
+  margin: 0;
+  font-size: 13px;
+  color: var(--cg-sub);
+}
+.ach-count {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: var(--cg-green);
+}
+
+/* 3칸 x 3줄 카드 */
+.ach-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ach-card {
+  min-height: 140px;
+  padding: 20px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-line);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+.ach-card.done { border-color: var(--cg-green); }
+.ach-card.pending { opacity: 0.5; }
+
+.ach-card-title {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.ach-card-desc {
+  margin: 0;
+  font-size: 12px;
+  color: var(--cg-sub);
+}
+
+.ach-status {
+  margin: auto 0 0;          /* 카드 맨 아래로 */
+  padding-top: 16px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--cg-muted);
+}
+.ach-card.done .ach-status { color: var(--cg-green); }
+
+.ach-bar {
+  height: 6px;
+  margin-top: 8px;
+  background: var(--cg-field);
+}
+.ach-bar-fill {
+  height: 100%;
+  background: var(--cg-green);
+}
+
+/* ---------- D-day 카드 (DdaySection) · 위치·여백은 놓이는 곳에서 정함 ---------- */
+.ach-dday-wrap { margin-top: 24px; }
+
+.dday-card {
+  width: 100%;
+  padding: 12px 24px 18px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-line);
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: var(--cg-text);
+}
+
+/* 위: 제목 + 버튼 (TodoCard 헤더와 같은 배치) */
+.dday-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.dday-heading {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+/* 공통 Button 크기 (TodoCard + ADD와 같게) */
+.dday-add button {
+  width: 96px;
+  height: 44px;
+}
+
+/* 아래: 목록 */
+.dday-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dday-empty {
+  margin: 0;
+  font-size: 13px;
+  color: var(--cg-sub);
+}
+.dday-chip {
+  padding: 8px 12px;
+  background: var(--cg-field);
+  border: 1px solid var(--cg-line);
+  border-radius: 4px;
+  color: var(--cg-text);
+  font-size: 13px;
+  cursor: pointer;
+}
+.dday-chip:hover { border-color: var(--cg-green); }
+.dday-chip strong {
+  margin-left: 6px;
+  color: var(--cg-green);
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* 업적 달성 토스트 */
+.ach-toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-green);
+  border-radius: 6px;
+  color: var(--cg-green);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 200;
+}
+
+
+/* ---------- D-day 모달 (A-02) · TODO: 공통 Modal 나오면 교체 ---------- */
+.ach-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.ach-modal {
+  width: 460px;
+  padding: 28px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-green);
+  border-radius: 6px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.ach-modal-title {
+  margin: 0 0 20px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  color: var(--cg-text);
+}
+
+.ach-field-label {
+  margin: 12px 0 6px;
+  font-size: 12px;
+  color: var(--cg-sub);
+}
+
+/* 날짜 입력: 공통 Input과 같은 모양으로 맞춤 */
+.ach-date {
+  padding: 12px;
+  background: var(--cg-field);
+  border: 1px solid var(--cg-line);
+  border-radius: 4px;
+  color: var(--cg-text);
+  font-size: 14px;
+  outline: none;
+  color-scheme: dark;        /* 달력 아이콘·팝업을 어두운 테마로 */
+}
+.ach-date:focus { border-color: var(--cg-green); }
+
+.ach-preview {
+  margin: 10px 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: var(--cg-green);
+}
+
+.ach-modal-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.ach-modal-buttons button {
+  flex: 1;
+  height: 44px;
+}
