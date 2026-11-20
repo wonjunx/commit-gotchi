@@ -1,0 +1,319 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap");
+
+/* 전체 페이지 컨테이너 (기본 본문·라벨: Noto Sans KR) */
+.settings-page {
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--cg-text, #e8efe9);
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.settings-page *,
+.settings-page *::before,
+.settings-page *::after {
+  box-sizing: border-box;
+}
+
+/* 설정 페이지 내 모든 버튼: Roboto Mono */
+.settings-page button {
+  font-family: "Roboto Mono", "Noto Sans KR", monospace !important;
+}
+
+/* 상단 타이틀 영역 */
+.settings-header {
+  margin-bottom: 28px;
+}
+
+.settings-title {
+  margin: 0 0 8px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--cg-text, #e8efe9);
+}
+
+.settings-sub {
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 13px;
+  color: var(--cg-sub, #9aa59d);
+}
+
+/* 피그마 2단 레이아웃 (좌측 사이드바 + 우측 통합 패널) */
+.settings-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* 좌측 사이드바 */
+.settings-sidebar {
+  background: var(--cg-card, #111713);
+  border: 1px solid var(--cg-line, #1f2a23);
+  border-radius: 8px;
+  padding: 28px 24px;
+}
+
+.settings-nav {
+  position: sticky;
+  top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.settings-nav-btn {
+  padding: 4px 0;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: "Roboto Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--cg-sub, #9aa59d);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.settings-nav-btn:hover {
+  color: var(--cg-text, #e8efe9);
+}
+
+.settings-nav-btn.active {
+  color: var(--cg-green, #3bff77);
+}
+
+.settings-nav-btn.danger.active {
+  color: var(--cg-red, #ff6b6b);
+}
+
+/* 우측 통합 설정 패널 */
+.settings-panel {
+  background: var(--cg-card, #111713);
+  border: 1px solid var(--cg-line, #1f2a23);
+  border-radius: 8px;
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* 각 섹션 블록 */
+.settings-block {
+  scroll-margin-top: 32px;
+}
+
+/* 섹션 헤더(ACCOUNT, AUDIO, PET, SYSTEM, DATA): Roboto Mono */
+.settings-kicker {
+  margin: 0 0 18px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--cg-green, #3bff77);
+}
+
+.settings-kicker.danger {
+  color: var(--cg-red, #ff6b6b);
+}
+
+/* 팀원 컴포넌트(ACCOUNT, PET, DATA)를 우측 통합 패널에 자연스럽게 녹이는 래퍼 */
+.settings-embed > section {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: "Noto Sans KR", sans-serif !important;
+}
+
+.settings-embed > section > h2,
+.settings-embed > section > h3 {
+  margin: 0 0 14px 0 !important;
+  padding: 0 !important;
+  border-bottom: none !important;
+  font-family: "Roboto Mono", "Noto Sans KR", monospace !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  color: var(--cg-green, #3bff77) !important;
+}
+
+.settings-embed-danger > section > h2,
+.settings-embed-danger > section > h3 {
+  color: var(--cg-red, #ff6b6b) !important;
+}
+
+/* 팀원 섹션 내부 항목 라벨·설명: Noto Sans KR */
+.settings-embed > section > div > span:first-of-type,
+.settings-embed p {
+  font-family: "Noto Sans KR", sans-serif !important;
+}
+
+/* PET 섹션: 펫 이름 옆 스탯(· TYPE · Lv.N) 숨기기 + 이름 폰트 통일 */
+.settings-embed-pet > section > div > span:nth-of-type(2) {
+  font-family: "Noto Sans KR", sans-serif !important;
+  font-size: 14px !important;
+  color: var(--cg-text, #e8efe9) !important;
+}
+
+.settings-embed-pet > section > div > span > span {
+  display: none !important;
+}
+
+/* AUDIO · SYSTEM 행 공통 */
+.settings-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 44px;
+}
+
+.settings-label {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cg-text, #e8efe9);
+}
+
+/* AUDIO 볼륨 슬라이더 */
+.settings-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 340px;
+  max-width: 100%;
+}
+
+.settings-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 6px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.settings-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 20px;
+  border-radius: 2px;
+  background: var(--cg-green, #3bff77);
+  border: none;
+  cursor: pointer;
+}
+
+.settings-slider::-moz-range-thumb {
+  width: 10px;
+  height: 20px;
+  border-radius: 2px;
+  background: var(--cg-green, #3bff77);
+  border: none;
+  cursor: pointer;
+}
+
+.settings-percent {
+  width: 44px;
+  text-align: right;
+  font-family: "Roboto Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cg-green, #3bff77);
+}
+
+/* SYSTEM 애니메이션 ON/OFF 토글 버튼 */
+.settings-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 148px;
+  height: 42px;
+  padding: 0 18px;
+  background: var(--cg-field, #171f1a);
+  border: 1px solid var(--cg-line, #1f2a23);
+  border-radius: 4px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cg-muted, #6f7b73);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.settings-toggle-btn:hover {
+  border-color: var(--cg-sub, #9aa59d);
+}
+
+.settings-toggle-btn.on {
+  color: var(--cg-green, #3bff77);
+  border-color: #2a3a30;
+}
+
+.settings-toggle-btn.on:hover {
+  border-color: var(--cg-green, #3bff77);
+}
+
+.settings-toggle-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cg-muted, #6f7b73);
+}
+
+.settings-toggle-btn.on .settings-toggle-dot {
+  background: var(--cg-green, #3bff77);
+  box-shadow: 0 0 8px rgba(59, 255, 119, 0.55);
+}
+
+/* Animation OFF 설정 시 전체 앱 애니메이션 중지 */
+html.cg-no-motion *,
+html.cg-no-motion *::before,
+html.cg-no-motion *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* 좁은 화면 대응 */
+@media (max-width: 900px) {
+  .settings-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-sidebar {
+    padding: 14px 18px;
+  }
+
+  .settings-nav {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .settings-panel {
+    padding: 24px 20px;
+  }
+
+  .settings-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .settings-slider-wrap {
+    width: 100%;
+  }
+}
