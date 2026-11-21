@@ -3,6 +3,7 @@ import { TodoCard } from "../features/todo";
 import { GithubCalendar, GithubStatus } from "../features/github";
 import { getActivity, recordActivity } from "../features/todo/activity";
 import { usePet, PetCard } from "../features/pet";
+import { DdaySection } from "../features/achievement";
 
 function Home() {
   const user = JSON.parse(localStorage.getItem("commitgotchi_user") || "{}");
@@ -31,7 +32,8 @@ function Home() {
           githubId={githubId}
           getActivity={getActivity}
         />
-        <TodoCard />
+       <DdaySection />
+       <TodoCard />
       </div>
 
       {/* 오른쪽 구역 (펫 박스 + 지표) */}
