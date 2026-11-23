@@ -4,6 +4,7 @@ import { GithubCalendar, GithubStatus } from "../features/github";
 import { getActivity, recordActivity } from "../features/todo/activity";
 import { usePet, PetCard } from "../features/pet";
 import { DdaySection } from "../features/achievement";
+import "./Home.css";
 
 function Home() {
   const user = JSON.parse(localStorage.getItem("commitgotchi_user") || "{}");
@@ -16,44 +17,36 @@ function Home() {
   };
 
   return (
-    /* 🌟 플렉스 비율 대신 고정 픽셀(740px, 580px)과 간격(24px)으로 1344px에 딱 맞게 배치 */
-    <div style={{ display: "flex", gap: "24px" }}>
-      {/* 왼쪽 구역 (캘린더 + 투두) */}
-      <div
-        style={{
-          width: "740px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
-        }}
-      >
-        <GithubCalendar
-          key={`cal-${githubId}`}
-          githubId={githubId}
-          getActivity={getActivity}
-        />
-       <DdaySection />
-       <TodoCard />
+    <div className="home-grid">
+      <div className="home-left">
+        <div className="home-calendar-slot">
+          <GithubCalendar
+            key={`cal-${githubId}`}
+            githubId={githubId}
+            getActivity={getActivity}
+          />
+        </div>
+        <div className="home-dday-slot">
+          <DdaySection />
+        </div>
+        <div className="home-todo-slot">
+          <TodoCard />
+        </div>
       </div>
 
-      {/* 오른쪽 구역 (펫 박스 + 지표) */}
-      <div
-        style={{
-          width: "580px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
-        }}
-      >
-        <PetCard />
-
-        <GithubStatus
-          key={`stat-${githubId}`}
-          githubId={githubId}
-          onToast={showToast}
-          addExp={addExp}
-          recordActivity={recordActivity}
-        />
+      <div className="home-right">
+        <div className="home-pet-card">
+          <PetCard />
+          <div className="home-status-slot">
+            <GithubStatus
+              key={`stat-${githubId}`}
+              githubId={githubId}
+              onToast={showToast}
+              addExp={addExp}
+              recordActivity={recordActivity}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
