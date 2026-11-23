@@ -3,6 +3,7 @@ import { TodoCard } from "../features/todo";
 import { GithubCalendar, GithubStatus } from "../features/github";
 import { getActivity, recordActivity } from "../features/todo/activity";
 import { usePet, PetCard } from "../features/pet";
+import { DdaySection } from "../features/achievement";
 import "./Home.css";
 
 function Home() {
@@ -24,6 +25,9 @@ function Home() {
             githubId={githubId}
             getActivity={getActivity}
           />
+        </div>
+        <div className="home-dday-slot">
+          <DdaySection />
         </div>
         <div className="home-todo-slot">
           <TodoCard />
