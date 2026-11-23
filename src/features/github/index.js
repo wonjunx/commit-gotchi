@@ -13,6 +13,7 @@ export { default as GithubIdModal } from './GithubIdModal.jsx'; // S-02 GitHub I
 export { useGithubActivity } from './useGithubActivity.js';
 export { useGithubStatus, GITHUB_TOAST } from './useGithubStatus.js';
 export { useGithubCalendar } from './useGithubCalendar.js';
+export { useGithubStats } from './useGithubStats.js'; // DATA 최장 스트릭 · 주간 TOP5 · 하루 최다 커밋
 export {
   getGithubUser,
   getTodayGithubActivity,
@@ -21,3 +22,12 @@ export {
   GithubApiError,
   ERROR_MESSAGES,
 } from './githubApi.js';
+export {
+  buildGithubStats,
+  calcLongestStreak,
+  topWeeks,
+  weeklyTotals,
+  weekStartOf,
+  bestCommitDay,
+  shortDate,
+} from './githubStats.js';
