@@ -80,11 +80,11 @@ export const TYPE_COLORS = {
 export const EYE = '#0b0f0d'
 export const CROWN = '#ffd23b'
 
-// 종류별 소개 (O-02 카드 · 도감)
+// 종류별 이름 · 팁 (O-02 카드 · 도감 · 펫 카드)
 export const TYPE_INFO = {
-  c: { label: 'C', desc: ['포인터를 좋아하는', '초록 픽셀 친구'], tip: '포인터는 주소를 담는 변수예요.' },
-  cpp: { label: 'C++', desc: ['클래스를 쌓아 올리는', '보라 친구'], tip: '클래스는 데이터와 함수를 한데 묶어요.' },
-  java: { label: 'JAVA', desc: ['객체를 모으는', '주황 커피 친구'], tip: '객체는 new로 만들어요.' },
-  python: { label: 'PYTHON', desc: ['들여쓰기에 진심인', '파란 친구'], tip: '파이썬은 들여쓰기로 블록을 나눠요.' },
-  html: { label: 'HTML', desc: ['태그를 꼭 닫아 주는', '분홍 친구'], tip: '여는 태그가 있으면 닫는 태그도!' },
+  c: { label: 'C', tip: '포인터는 주소를 담는 변수예요.' },
+  cpp: { label: 'C++', tip: '클래스는 데이터와 함수를 한데 묶어요.' },
+  java: { label: 'JAVA', tip: '객체는 new로 만들어요.' },
+  python: { label: 'PYTHON', tip: '파이썬은 들여쓰기로 블록을 나눠요.' },
+  html: { label: 'HTML', tip: '여는 태그가 있으면 닫는 태그도!' },
 }

@@ -50,7 +50,6 @@
 .eggOn, .eggOn:hover { border: 2px solid var(--_green); padding: 17px 7px 13px; background: #142019; }
 .eggArt { height: 64px; display: flex; align-items: flex-end; }
 .eggType { font-family: var(--_mono); font-size: 12px; font-weight: 800; letter-spacing: 0.4px; }
-.eggDesc { font-size: 11px; color: var(--_sub); line-height: 1.45; min-height: 32px; }
 .pill {
   margin-top: 2px; padding: 3px 12px; border: 1px solid var(--_line); border-radius: 999px;
   font-family: var(--_mono); font-size: 10px; font-weight: 700; color: var(--_muted);
