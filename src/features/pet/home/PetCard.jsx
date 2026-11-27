@@ -3,6 +3,7 @@ import { EXP_PER_LEVEL, FEED_HP, HP_MAX, MAX_LEVEL, STAGES } from '../rules.js'
 import { diffDays } from '../exp.js'
 import { TYPE_INFO } from '../petSprites.js'
 import { usePet } from '../usePet.js'
+import { playSfx } from '../../../shared/lib/sound'
 import PetSprite from '../PetSprite.jsx'
 import PetRenameModal from './PetRenameModal.jsx'
 import Heart from './Heart.jsx'
@@ -51,7 +52,10 @@ export default function PetCard() {
 
   function onFeed() {
     const r = feed()
-    if (r.fed) setFedPop((n) => n + 1)
+    if (r.fed) {
+      playSfx('feed')
+      setFedPop((n) => n + 1)
+    }
   }
 
   return (

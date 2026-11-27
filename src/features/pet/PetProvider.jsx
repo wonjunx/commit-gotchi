@@ -10,6 +10,7 @@ import {
 } from './exp.js'
 import { loadData, saveData, STORAGE_KEYS } from '../../shared/lib/storage'
 import { todayKey } from '../../shared/lib/date'
+import { playSfx } from '../../shared/lib/sound'
 import { PetContext } from './petContext.js'
 import { PetEventHost } from './PetEventHost.jsx'
 
@@ -71,6 +72,7 @@ export function PetProvider({ lastActivityDate, activityLoading = false, childre
     const delay = shownOnce.current ? NEXT_MODAL_DELAY_MS : FIRST_MODAL_DELAY_MS
     const id = setTimeout(() => {
       shownOnce.current = true
+      playSfx(queue[0].kind === 'levelUp' ? 'levelUp' : 'evolve')
       setEvent(queue[0])
       setQueue((q) => q.slice(1))
     }, delay)

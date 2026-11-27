@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { GithubAccountSection } from "../features/github";
 import { DataResetSection } from "../features/todo";
 import { PetSettingsSection, usePet } from "../features/pet";
+import { setVolumes } from "../shared/lib/sound";
 import "./Settings.css";
 
 const SETTINGS_STORAGE_KEY = "commitgotchi_settings";
@@ -64,6 +65,7 @@ function Settings() {
   useEffect(() => {
     localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(prefs));
     document.documentElement.classList.toggle("cg-no-motion", !prefs.animation);
+    setVolumes({ music: prefs.musicVolume, effect: prefs.effectVolume });
   }, [prefs]);
 
   const handleUserChange = (updatedUser) => {
