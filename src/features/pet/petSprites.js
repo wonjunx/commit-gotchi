@@ -69,6 +69,118 @@ export const SHAPES = {
   ],
 }
 
+// 종류별 성장기 · 최종 진화 모양 (없으면 SHAPES 공통 모양 = C)
+export const TYPE_SHAPES = {
+  // 머리에 + 두 개 · 가슴에 ++
+  cpp: {
+    growth: [
+      '..A......A..',
+      '.AAA....AAA.',
+      '..A......A..',
+      '..AAAAAAAA..',
+      '.AAKKAAKKAA.',
+      'AAAKKAAKKAAA',
+      'AAAAAAAAAAAA',
+      '.AAAKKKKAAA.',
+      '..AAAAAAAA..',
+      '..BB....BB..',
+    ],
+    legend: [
+      '..C..CC..C..',
+      '..CCCCCCCC..',
+      '.AAAAAAAAAA.',
+      'AAKKAAAAKKAA',
+      'AAKKAAAAKKAA',
+      'AAAAAAAAAAAA',
+      'AADAAAAADAAA',
+      'ADDDAAADDDAA',
+      'AADAAAAADAAA',
+      '.BB......BB.',
+    ],
+  },
+  // 김 나는 머그잔
+  java: {
+    growth: [
+      '...D..D.....',
+      '..D..D......',
+      '...D..D.....',
+      '.BBBBBBBB...',
+      '.AAAAAAAAAA.',
+      '.AKAAAAKA.A.',
+      '.AAAAAAAA.A.',
+      '.AAAKKAAAAA.',
+      '..AAAAAA....',
+      '..BB..BB....',
+    ],
+    legend: [
+      '..C.CC.C....',
+      '..CCCCCC....',
+      '.AAAAAAAAAA.',
+      '.AKKAAKKA.A.',
+      '.AKKAAKKA.A.',
+      '.AAAAAAAA.A.',
+      '.AAKKKKAAAA.',
+      '.AAAAAAAA...',
+      'BBBBBBBBBBBB',
+      '.B........B.',
+    ],
+  },
+  // S자로 꿈틀대는 뱀
+  python: {
+    growth: [
+      '............',
+      '.......AAA..',
+      '......AKAKA.',
+      '.......AAA..',
+      '...AAAAAAA..',
+      '..AADA......',
+      '..AAAAAAAA..',
+      '.......DAA..',
+      '..AAAAAAAA..',
+      '..BBB.......',
+    ],
+    legend: [
+      '......C.C.C.',
+      '......CCCCC.',
+      '......AKAKA.',
+      '......AAAAA.',
+      '..AAAAAAAAA.',
+      '.AADAADA....',
+      '.AAAAAAAAAA.',
+      '.......ADAA.',
+      '.AAAAAAAAAA.',
+      '.BBBBBBBBB..',
+    ],
+  },
+  // < > 괄호 · HTML5 방패
+  html: {
+    growth: [
+      '............',
+      '....AAAA....',
+      '...AAAAAA...',
+      '.D.AKAAKA.D.',
+      'D..AKAAKA..D',
+      '.D.AAAAAA.D.',
+      '...AAKKAA...',
+      '...AAAAAA...',
+      '...AAAAAA...',
+      '...BB..BB...',
+    ],
+    legend: [
+      '..C..CC..C..',
+      '..CCCCCCCC..',
+      'AAAAAABBBBBB',
+      'AAKKAABBKKBB',
+      'AAKKAABBKKBB',
+      'AAAAAABBBBBB',
+      '.AAAKKKKBBB.',
+      '.AAAAABBBBB.',
+      '..AAAABBBB..',
+      '....AABB....',
+    ],
+  },
+}
+
 // 종류별 색 (A 몸통, B 그림자, D 알 무늬)
 export const TYPE_COLORS = {
   c: { A: '#39ff72', B: '#26c959', D: '#b6ffc9' },
