@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState } from "react";
+import { SubscribeModal } from "../../features/subscribe";
 import SoundToggle from './SoundToggle';
 
 // 피그마 헤더 @아이디 옆 픽셀 아이콘
@@ -34,6 +36,7 @@ function PixelUserIcon() {
 function Header({ activeTab, setActiveTab }) {
   const user = JSON.parse(localStorage.getItem("commitgotchi_user") || "{}");
   const displayId = user.githubId ? `@${user.githubId}` : "";
+  const [showSubscribe, setShowSubscribe] = useState(false);
 
   const tabs = [
     { id: 'home', label: 'HOME' },
@@ -165,6 +168,8 @@ function Header({ activeTab, setActiveTab }) {
 
           <button
             type="button"
+            onClick={() => setShowSubscribe(true)}
+
             style={{
               background: 'var(--cg-card, #111713)',
               border: '1px solid var(--cg-line, #1f2a23)',
@@ -186,6 +191,8 @@ function Header({ activeTab, setActiveTab }) {
           </button>
         </div>
       </div>
+    <SubscribeModal isOpen={showSubscribe} onClose={() => setShowSubscribe(false)} />   {/* ★ 추가 */}
+
     </header>
   );
 }

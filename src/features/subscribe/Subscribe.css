@@ -1,0 +1,147 @@
+
+.sub-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;              /* 헤더보다 위 */
+}
+
+/* ---------- 구독 창 ---------- */
+.sub-modal {
+  width: 790px;
+  max-width: calc(100% - 32px);
+  padding: 36px 40px 24px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-green);
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: var(--cg-text);
+}
+
+.sub-title {
+  margin: 0 0 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 26px;
+}
+.sub-sub {
+  margin: 0 0 32px;
+  font-size: 15px;
+  color: var(--cg-sub);
+}
+
+/* 요금제 카드 2개 나란히 */
+.sub-plans {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.sub-plan {
+  min-height: 350px;
+  padding: 24px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-line);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+/* PRO: 초록 배경 + 초록 테두리 */
+.sub-plan.best {
+  background: rgba(59, 255, 119, 0.1);
+  border-color: var(--cg-green);
+}
+
+.sub-plan-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sub-plan-name {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cg-green);
+}
+.sub-plan-badge {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cg-green);
+}
+
+.sub-plan-price {
+  margin: 16px 0 24px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.sub-plan-features {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* GET LITE / GET PRO / 확인 버튼 (피그마: 어두운 칸 + 초록 글자) */
+.sub-btn {
+  width: 100%;
+  height: 44px;
+  margin-top: auto;          /* 카드 맨 아래로 */
+  padding: 0 14px;
+  background: var(--cg-field);
+  border: 1px solid var(--cg-line);
+  border-radius: 4px;
+  color: var(--cg-green);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+.sub-btn:hover { border-color: var(--cg-green); }
+
+.sub-note {
+  margin: 28px 0 16px;
+  font-size: 12px;
+  color: var(--cg-sub);
+}
+
+.sub-later {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--cg-sub);
+  font-size: 14px;
+  cursor: pointer;
+}
+.sub-later:hover { color: var(--cg-text); }
+
+/* ---------- PREMIUM PREVIEW 확인창 ---------- */
+.sub-preview {
+  width: 440px;
+  max-width: calc(100% - 32px);
+  padding: 28px;
+  background: var(--cg-card);
+  border: 1px solid var(--cg-green);
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: var(--cg-text);
+}
+.sub-preview-title {
+  margin: 0 0 24px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  color: var(--cg-green);
+}
+.sub-preview-desc {
+  margin: 0 0 40px;
+  font-size: 15px;
+  line-height: 1.6;
+}
