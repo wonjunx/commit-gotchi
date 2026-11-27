@@ -92,16 +92,7 @@
 .full { grid-column: 1 / -1; text-align: center; }
 
 /* O-05 부화 */
-.stage { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: 18px; height: 120px; margin: 4px 0 20px; }
-.arrow { font-family: var(--_mono); color: var(--_green); font-weight: 800; margin-bottom: 30px; }
-.shake { animation: shake 0.25s steps(2) infinite; transform-origin: 50% 100%; }
-@keyframes shake { 0% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
-.crack { animation: crack 0.5s steps(3) forwards; }
-@keyframes crack { to { transform: scale(1.25); opacity: 0; filter: brightness(2); } }
-.pop { animation: pop 0.5s steps(3); }
-@keyframes pop { from { transform: scale(0.3); opacity: 0; } }
-.flash { position: absolute; inset: -20px 30%; background: radial-gradient(circle, rgba(57,255,114,0.35), transparent 70%); animation: flash 0.6s ease-out forwards; pointer-events: none; }
-@keyframes flash { from { opacity: 1; } to { opacity: 0; } }
+.stage { position: relative; display: flex; justify-content: center; align-items: flex-end; height: 150px; margin: 4px 0 20px; }
 .center { text-align: center; }
 .rules { margin: 0; padding: 14px 16px; border: 1px solid var(--_line); border-radius: 4px; background: var(--_field); list-style: none; }
 .rules li { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; font-size: 12px; }

@@ -1,19 +1,32 @@
 import { useEffect, useState } from 'react'
 import { EXP_REWARD, NEGLECT_HP_PENALTY } from '../rules.js'
-import PetSprite from '../PetSprite.jsx'
+import HatchEgg from './HatchEgg.jsx'
 import { withJosa } from '../josa.js'
 import StepHeader from './StepHeader.jsx'
 import s from './Onboarding.module.css'
 
-// O-05 부화 — 알이 흔들리다 깨지고 펫 등장 → EXP 규칙 안내
-// phase: shake(1.4s) → crack(0.5s) → born
+// O-05 부화 — 금이 가며 흔들리다(1.4초) 갈라지고 펫 등장 → EXP 규칙 안내
+// 효과음(playSfx('hatch'))의 '팡' 타이밍과 split 시작(1.4초)을 맞춤
+const TIMELINE = [
+  ['crack1', 450],
+  ['crack2', 450],
+  ['crack3', 500],
+  ['split', 600],
+  ['born', null],
+]
+
 export default function HatchPet({ pet, onStart }) {
-  const reduce = typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-  const [phase, setPhase] = useState(reduce ? 'born' : 'shake')
+  const reduce =
+    typeof window !== 'undefined' &&
+    (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ||
+      document.documentElement.classList.contains('cg-no-motion'))
+  const [phase, setPhase] = useState(reduce ? 'born' : 'crack1')
 
   useEffect(() => {
-    if (phase === 'born') return
-    const id = setTimeout(() => setPhase(phase === 'shake' ? 'crack' : 'born'), phase === 'shake' ? 1400 : 500)
+    const i = TIMELINE.findIndex(([p]) => p === phase)
+    const [, ms] = TIMELINE[i]
+    if (ms == null) return
+    const id = setTimeout(() => setPhase(TIMELINE[i + 1][0]), ms)
     return () => clearTimeout(id)
   }, [phase])
 
@@ -22,24 +35,11 @@ export default function HatchPet({ pet, onStart }) {
     <section className={s.card} aria-labelledby="hatch-title" aria-live="polite">
       <StepHeader index={5} label="HATCH" />
       <div className={s.stage}>
-        {!born ? (
-          <span className={phase === 'shake' ? s.shake : s.crack}>
-            <PetSprite type={pet.type} stage="shell" size={9} animate={false} title="부화 중인 알" />
-          </span>
-        ) : (
-          <>
-            <span className={s.flash} />
-            <PetSprite type={pet.type} stage="shell" size={5} animate={false} title="깨진 알" className={s.fadeIn} />
-            <span className={`${s.arrow} ${s.fadeIn}`}>→</span>
-            <span className={s.pop}>
-              <PetSprite type={pet.type} stage="egg" mood="HAPPY" size={9} title={pet.name} />
-            </span>
-          </>
-        )}
+        <HatchEgg type={pet.type} phase={phase} name={pet.name} />
       </div>
 
       <h1 id="hatch-title" className={`${s.title} ${s.center}`}>
-        {born ? `${withJosa(pet.name, '이', '가')} 깨어났어요!` : '알이 움직이고 있어요…'}
+        {born ? `${withJosa(pet.name, '이', '가')} 깨어났어요!` : phase === 'split' ? '톡!' : '알이 움직이고 있어요…'}
       </h1>
 
       <div className={born ? s.fadeIn : ''} style={{ visibility: born ? 'visible' : 'hidden' }}>
