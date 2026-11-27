@@ -3,6 +3,7 @@ import { EXP_PER_LEVEL, FEED_HP, HP_MAX, MAX_LEVEL, STAGES } from '../rules.js'
 import { diffDays } from '../exp.js'
 import { TYPE_INFO } from '../petSprites.js'
 import { usePet } from '../usePet.js'
+import { playSfx } from '../../../shared/lib/sound'
 import PetSprite from '../PetSprite.jsx'
 import PetRenameModal from './PetRenameModal.jsx'
 import Heart from './Heart.jsx'
@@ -24,7 +25,7 @@ function lastFedLabel(lastFedDate, today) {
 // H-04 펫 카드 — HOME 오른쪽 PET BOX 자리. FEED 줄(FeedRow) · 이름 변경(S-03) 포함
 // 주소에 ?debug 를 붙이면 시연용 "EXP 98" 버튼이 보임
 export default function PetCard() {
-  const { pet, mood, today, feed, canFeedToday, debug } = usePet()
+  const { pet, shownStage, mood, today, feed, canFeedToday, debug } = usePet()
   const [renaming, setRenaming] = useState(false)
   const [fedPop, setFedPop] = useState(0)
 
@@ -40,7 +41,7 @@ export default function PetCard() {
   }
 
   const info = TYPE_INFO[pet.type] ?? TYPE_INFO.c
-  const stageLabel = STAGES.find((x) => x.id === pet.stage)?.label ?? ''
+  const stageLabel = STAGES.find((x) => x.id === shownStage)?.label ?? ''
   const maxed = pet.level >= MAX_LEVEL
   const expPct = Math.min(100, (pet.exp / EXP_PER_LEVEL) * 100)
   const hearts = Array.from({ length: 5 }, (_, i) => {
@@ -51,7 +52,10 @@ export default function PetCard() {
 
   function onFeed() {
     const r = feed()
-    if (r.fed) setFedPop((n) => n + 1)
+    if (r.fed) {
+      playSfx('feed')
+      setFedPop((n) => n + 1)
+    }
   }
 
   return (
@@ -73,7 +77,7 @@ export default function PetCard() {
       <div className={s.stage}>
         <span className={s.stageLabel}>{stageLabel}</span>
         <span className={s.bubble}>{info.tip}</span>
-        <PetSprite type={pet.type} stage={pet.stage} mood={mood} size={13} title={`${pet.name} (${mood})`} />
+        <PetSprite type={pet.type} stage={shownStage} mood={mood} size={13} title={`${pet.name} (${mood})`} />
       </div>
       <p className={s.caption}>{MOOD_TEXT[mood]}</p>
 

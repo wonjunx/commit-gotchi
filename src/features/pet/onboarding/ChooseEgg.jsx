@@ -31,11 +31,6 @@ export default function ChooseEgg({ selected, onSelect, onBack, onNext }) {
               <span className={s.eggType} style={{ color: on ? 'var(--cg-green, #39ff72)' : undefined }}>
                 {info.label} TYPE
               </span>
-              <span className={s.eggDesc}>
-                {info.desc[0]}
-                <br />
-                {info.desc[1]}
-              </span>
               <span className={`${s.pill} ${on ? s.pillOn : ''}`}>{on ? 'SELECTED' : 'SELECT'}</span>
             </button>
           )

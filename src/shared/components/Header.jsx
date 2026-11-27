@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from "react";
 import { SubscribeModal } from "../../features/subscribe";
+import SoundToggle from './SoundToggle';
 
 // 피그마 헤더 @아이디 옆 픽셀 아이콘
 function PixelUserIcon() {
@@ -136,6 +137,8 @@ function Header({ activeTab, setActiveTab }) {
               </span>
             </div>
           )}
+
+          <SoundToggle />
 
           <button
             type="button"

@@ -7,11 +7,17 @@ import Ranking from "./pages/Ranking";
 import Settings from "./pages/Settings";
 import Onboarding from "./pages/Onboarding";
 import { PetProvider } from "./features/pet";
+import { initSound } from "./shared/lib/sound";
 
 function App() {
   const [activeTab, setActiveTab] = useState("home");
 
   const [hasUser, setHasUser] = useState(false);
+
+  // 첫 클릭 이후 BGM 시작
+  useEffect(() => {
+    initSound();
+  }, []);
 
   // GitHub 연결 + 펫 생성까지 끝나야 HOME
   useEffect(() => {

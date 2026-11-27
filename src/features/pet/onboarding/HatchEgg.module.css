@@ -1,0 +1,53 @@
+.wrap { position: relative; margin: 0 auto; }
+.egg { position: absolute; inset: 0; transform-origin: 50% 100%; }
+.piece { position: absolute; left: 0; top: 0; display: block; }
+.top { z-index: 3; transform-origin: 30% 60%; }
+.bottom { z-index: 2; }
+.pet { position: absolute; left: 50%; bottom: 4px; z-index: 1; transform: translateX(-50%); line-height: 0; }
+
+/* 흔들림: 금이 갈수록 세게 */
+.crack1 .egg { animation: wobble 0.5s steps(2) infinite; --deg: 4deg; }
+.crack2 .egg { animation: wobble 0.3s steps(2) infinite; --deg: 7deg; }
+.crack3 .egg { animation: wobble 0.16s steps(2) infinite; --deg: 10deg; }
+@keyframes wobble {
+  0% { transform: rotate(calc(var(--deg) * -1)); }
+  50% { transform: rotate(var(--deg)); }
+}
+.crack3 { animation: hop 0.32s steps(2) infinite; }
+@keyframes hop { 50% { transform: translateY(-4px); } }
+
+/* 갈라짐: 윗껍데기 날아가고 펫이 아래 껍데기에서 튀어나옴 */
+.split .top { animation: lid 0.6s steps(6) forwards; }
+@keyframes lid {
+  to { transform: translate(-34px, -70px) rotate(-40deg); opacity: 0; }
+}
+.split .pet { animation: rise 0.5s cubic-bezier(0.2, 1.6, 0.4, 1) both; }
+@keyframes rise {
+  from { transform: translate(-50%, 46px) scale(0.6); }
+  to { transform: translate(-50%, -6px) scale(1); }
+}
+
+/* 부화 완료: 아랫껍데기 사라지고 펫 착지 */
+.born .pet { transform: translate(-50%, -6px); }
+.born .top { opacity: 0; }
+.born .bottom { animation: drop 0.4s steps(4) forwards; }
+@keyframes drop { to { transform: translateY(10px); opacity: 0; } }
+
+.flash {
+  position: absolute; left: 50%; top: 50%; z-index: 0; width: 220px; height: 220px; margin: -110px 0 0 -110px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(57, 255, 114, 0.4), transparent 65%);
+  animation: flash 0.7s ease-out forwards; pointer-events: none;
+}
+@keyframes flash { from { opacity: 1; transform: scale(0.4); } to { opacity: 0; transform: scale(1.2); } }
+
+.bit {
+  position: absolute; left: 50%; top: 45%; z-index: 4; width: 8px; height: 8px;
+  animation: bit 0.6s steps(5) forwards;
+}
+@keyframes bit { to { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap, .wrap * { animation: none !important; }
+}
+:global(.cg-no-motion) .wrap,
+:global(.cg-no-motion) .wrap * { animation: none !important; }

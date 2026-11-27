@@ -1,11 +1,11 @@
-import { CROWN, EYE, SHAPES, TYPE_COLORS } from './petSprites.js'
+import { CROWN, EYE, SHAPES, TYPE_COLORS, TYPE_SHAPES } from './petSprites.js'
 import s from './PetSprite.module.css'
 
 // 펫 그림. stage: 'shell'(부화 전) · 'egg' · 'baby' · 'growth' · 'legend'
 // mood가 있으면 상태별 색 · 움직임 · 효과(HAPPY 반짝임, HUNGRY !, SICK 땀)
 // locked: 도감에서 아직 못 얻은 펫 (실루엣)
 export default function PetSprite({ type = 'c', stage = 'egg', mood, size = 8, locked = false, animate = true, className = '', title }) {
-  const rows = SHAPES[stage] ?? SHAPES.egg
+  const rows = TYPE_SHAPES[type]?.[stage] ?? SHAPES[stage] ?? SHAPES.egg
   const color = TYPE_COLORS[type] ?? TYPE_COLORS.c
   const palette = locked
     ? { A: '#1f2a23', B: '#1a231d', D: '#1f2a23', K: '#1f2a23', C: '#1f2a23' }

@@ -10,6 +10,7 @@ import {
 } from './exp.js'
 import { loadData, saveData, STORAGE_KEYS } from '../../shared/lib/storage'
 import { todayKey } from '../../shared/lib/date'
+import { playSfx } from '../../shared/lib/sound'
 import { PetContext } from './petContext.js'
 import { PetEventHost } from './PetEventHost.jsx'
 
@@ -71,6 +72,7 @@ export function PetProvider({ lastActivityDate, activityLoading = false, childre
     const delay = shownOnce.current ? NEXT_MODAL_DELAY_MS : FIRST_MODAL_DELAY_MS
     const id = setTimeout(() => {
       shownOnce.current = true
+      playSfx(queue[0].kind === 'levelUp' ? 'levelUp' : 'evolve')
       setEvent(queue[0])
       setQueue((q) => q.slice(1))
     }, delay)
@@ -143,9 +145,14 @@ export function PetProvider({ lastActivityDate, activityLoading = false, childre
     [commit, syncToday],
   )
 
+  // 진화 연출이 끝나기 전에는 화면에 이전 모습을 보여 준다 (결과 미리 보이지 않게)
+  const pendingEvolution = [event, ...queue].find((e) => e?.kind === 'evolution')
+  const shownStage = pendingEvolution ? pendingEvolution.fromStage : pet?.stage
+
   const value = useMemo(
     () => ({
       pet,
+      shownStage,
       addExp,
       feed,
       rename,
@@ -160,7 +167,7 @@ export function PetProvider({ lastActivityDate, activityLoading = false, childre
       reload,
       debug,
     }),
-    [pet, addExp, feed, rename, today, effectiveLast, event, dismissEvent, adoptPet, reload, debug],
+    [pet, shownStage, addExp, feed, rename, today, effectiveLast, event, dismissEvent, adoptPet, reload, debug],
   )
 
   return (
