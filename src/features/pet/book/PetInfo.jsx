@@ -28,7 +28,7 @@ function longestRun(cells) {
 
 // P-02 펫 정보
 export default function PetInfo({ onBack }) {
-  const { pet, mood, today } = usePet()
+  const { pet, shownStage, mood, today } = usePet()
   const githubId = loadData(STORAGE_KEYS.USER, {})?.githubId || ''
   const { totalCount } = useGithubStatus(githubId)
   const cal = useGithubCalendar(githubId, { getActivity })
@@ -61,7 +61,7 @@ export default function PetInfo({ onBack }) {
         <section className={s.panel}>
           <div className={s.profileTop}>{TYPE_INFO[pet.type].label} TYPE · STAGE {stageIdx} / {STAGES.length - 1}</div>
           <div className={s.profileArt}>
-            <PetSprite type={pet.type} stage={pet.stage} mood={mood} size={12} />
+            <PetSprite type={pet.type} stage={shownStage} mood={mood} size={12} />
           </div>
           <h2 className={s.profileName}>{pet.name}<small>LV. {pet.level}</small></h2>
           <p className={s.profileMood}>● {mood}</p>

@@ -145,9 +145,14 @@ export function PetProvider({ lastActivityDate, activityLoading = false, childre
     [commit, syncToday],
   )
 
+  // 진화 연출이 끝나기 전에는 화면에 이전 모습을 보여 준다 (결과 미리 보이지 않게)
+  const pendingEvolution = [event, ...queue].find((e) => e?.kind === 'evolution')
+  const shownStage = pendingEvolution ? pendingEvolution.fromStage : pet?.stage
+
   const value = useMemo(
     () => ({
       pet,
+      shownStage,
       addExp,
       feed,
       rename,
@@ -162,7 +167,7 @@ export function PetProvider({ lastActivityDate, activityLoading = false, childre
       reload,
       debug,
     }),
-    [pet, addExp, feed, rename, today, effectiveLast, event, dismissEvent, adoptPet, reload, debug],
+    [pet, shownStage, addExp, feed, rename, today, effectiveLast, event, dismissEvent, adoptPet, reload, debug],
   )
 
   return (
